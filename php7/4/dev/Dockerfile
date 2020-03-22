@@ -24,8 +24,6 @@ RUN apk add bash shadow git nginx supervisor -u $PHPIZE_DEPS \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-RUN docker-php-ext-install pdo_mysql bcmath
-
 WORKDIR /var/www/html
 
 # Expose the port nginx is reachable on
