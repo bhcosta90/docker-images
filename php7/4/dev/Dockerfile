@@ -11,6 +11,7 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS \
     && mkdir -p /var/www/html \
     && rm /var/cache/apk/* \
     && usermod -u 1000 www-data \
+    && groupmod -g  1000 www-data \
     && apk --update --no-cache add autoconf g++ make \
     && pecl install -f xdebug \
     && docker-php-ext-enable xdebug \
