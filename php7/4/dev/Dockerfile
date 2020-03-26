@@ -2,6 +2,8 @@ FROM php:7.4-fpm-alpine
 
 ENV DOCKERIZE_VERSION v0.6.1
 
+COPY .docker/nginx.conf /etc/nginx/nginx.conf
+
 #Default
 RUN apk add bash shadow git nginx supervisor -u $PHPIZE_DEPS \
     && rm /etc/nginx/conf.d/default.conf \
@@ -27,7 +29,7 @@ RUN apk add bash shadow git nginx supervisor -u $PHPIZE_DEPS \
 WORKDIR /var/www/html
 
 # Expose the port nginx is reachable on
-EXPOSE 8080
+EXPOSE 80
 
 # Let supervisord start nginx & php-fpm
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
