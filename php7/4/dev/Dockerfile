@@ -2,7 +2,7 @@ FROM php:7.4-fpm-alpine
 
 ENV DOCKERIZE_VERSION v0.6.1
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY docker-images/php7/4/dev/nginx.conf /etc/nginx/nginx.conf
 
 #Default
 RUN apk add bash shadow git nginx supervisor -u $PHPIZE_DEPS \
