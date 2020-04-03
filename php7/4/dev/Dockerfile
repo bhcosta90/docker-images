@@ -21,7 +21,6 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS \
     && echo "xdebug.remote_log=/var/www/html/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontab.txt \
     && docker-php-ext-install bcmath
 
 WORKDIR /var/www/html
