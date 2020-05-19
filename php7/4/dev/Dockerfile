@@ -1,11 +1,11 @@
 FROM php:7.4-fpm-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY entrypoint.sh /tmp/commands.sh
+COPY entrypoint.sh /srv/commands.sh
 
 #Default
 RUN apk add bash shadow git nginx -u $PHPIZE_DEPS \
-    && chmod +x /tmp/commands.sh \
+    && chmod +x /srv/commands.sh \
     && rm /etc/nginx/conf.d/default.conf \
     && curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && mkdir -p /var/www/html \
@@ -29,7 +29,7 @@ WORKDIR /var/www/html
 EXPOSE 80
 
 # ENTRYPOINT [ "php-fpm" ]
-ENTRYPOINT ["/tmp/commands.sh"]
+ENTRYPOINT ["/srv/commands.sh"]
 
 # Let supervisord start nginx & php-fpm
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
