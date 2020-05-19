@@ -4,24 +4,24 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY entrypoint.sh /srv/commands.sh
 
 #Default
-RUN apk add bash shadow git nginx -u $PHPIZE_DEPS \
-    && chmod +x /srv/commands.sh \
-    && rm /etc/nginx/conf.d/default.conf \
-    && curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && mkdir -p /var/www/html \
-    && rm /var/cache/apk/* \
-    && usermod -u 1000 www-data \
-    && groupmod -g  1000 www-data \
-    && apk --update --no-cache add autoconf g++ make \
-    && pecl install -f xdebug \
-    && docker-php-ext-enable xdebug \
-    && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_autostart=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_host=172.17.0.2" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_log=/var/www/html/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && docker-php-ext-install bcmath
+RUN apk add bash shadow git nginx -u $PHPIZE_DEPS && \
+    chmod +x /srv/commands.sh && \
+    rm /etc/nginx/conf.d/default.conf && \
+    curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    mkdir -p /var/www/html && \
+    rm /var/cache/apk/* && \
+    usermod -u 1000 www-data && \
+    groupmod -g  1000 www-data && \
+    apk --update --no-cache add autoconf g++ make && \
+    pecl install -f xdebug && \
+    docker-php-ext-enable xdebug && \
+    echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.remote_autostart=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.remote_host=172.17.0.2" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.remote_log=/var/www/html/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    docker-php-ext-install bcmath
 
 WORKDIR /var/www/html
 
