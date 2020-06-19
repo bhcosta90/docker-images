@@ -1,4 +1,6 @@
-FROM php:7.2-fpm-alpine
+ARG IMAGE
+
+FROM $IMAGE
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY entrypoint.sh /srv/commands.sh

@@ -1,4 +1,6 @@
-FROM php:7.2-fpm-alpine
+ARG IMAGE
+
+FROM $IMAGE
 
 #Default
 RUN apk add bash supervisor openssl-dev $PHPIZE_DEPS autoconf g++ make && \
