@@ -2,7 +2,6 @@ ARG IMAGE
 
 FROM $IMAGE
 
-COPY nginx.conf /etc/nginx/nginx.conf
 COPY entrypoint.sh /srv/commands.sh
 
 #Default
@@ -15,6 +14,8 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS && \
     usermod -u 1000 www-data && \
     groupmod -g  1000 www-data && \
     docker-php-ext-install bcmath pcntl
+
+COPY nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /var/www/html
 
