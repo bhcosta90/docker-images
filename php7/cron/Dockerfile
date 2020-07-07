@@ -6,7 +6,7 @@ COPY entrypoint.sh /srv/commands.sh
 
 #Default
 RUN apk add bash supervisor openssl-dev $PHPIZE_DEPS autoconf g++ make && \
-    docker-php-ext-install bcmath pcntl
+    docker-php-ext-install bcmath pcntl ctype fileinfo json tokenizer
 
 COPY supervisord.conf /etc/supervisord.conf
 

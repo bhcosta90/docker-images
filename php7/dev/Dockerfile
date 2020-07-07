@@ -22,7 +22,8 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS && \
     echo "xdebug.remote_log=/var/www/html/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    docker-php-ext-install bcmath pcntl
+    docker-php-ext-install bcmath pcntl ctype fileinfo json tokenizer
+    
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
