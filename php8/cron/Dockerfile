@@ -1,5 +1,4 @@
 ARG IMAGE
-
 FROM $IMAGE
 
 COPY entrypoint.sh /srv/commands.sh
