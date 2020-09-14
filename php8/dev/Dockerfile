@@ -1,6 +1,8 @@
 ARG IMAGE
 FROM $IMAGE
 
+ENV DOCKERIZE_VERSION v0.6.1
+
 COPY entrypoint.sh /srv/commands.sh
 
 #Default
@@ -12,9 +14,13 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS && \
     rm /var/cache/apk/* && \
     usermod -u 1000 www-data && \
     groupmod -g  1000 www-data && \
-    docker-php-ext-install bcmath pcntl ctype fileinfo tokenizer
+    docker-php-ext-install bcmath pcntl ctype fileinfo tokenizer && \
+    wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
+    tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
+    rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY supervisor /etc/supervisor/conf.d/
 
 WORKDIR /var/www/html
 
