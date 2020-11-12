@@ -20,7 +20,6 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS && \
     rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY supervisor /etc/supervisor/conf.d/
 
 WORKDIR /var/www/html
 
