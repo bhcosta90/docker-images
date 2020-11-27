@@ -13,7 +13,7 @@ RUN apk add bash supervisor openssl-dev $PHPIZE_DEPS autoconf g++ make && \
     rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 COPY supervisord.conf /etc/supervisord.conf
-COPY supervisor /etc/supervisor/conf.d/
+COPY supervisord /etc/supervisor/conf.d/
 
 RUN chmod +x /srv/commands.sh
 
