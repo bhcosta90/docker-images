@@ -26,7 +26,8 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS && \
     docker-php-ext-install bcmath pcntl ctype fileinfo json tokenizer && \
     wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
     tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
-    rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+    rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
+    docker-php-ext-install pdo pdo_mysql
     
 
 COPY nginx.conf /etc/nginx/nginx.conf
