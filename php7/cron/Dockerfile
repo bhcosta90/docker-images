@@ -10,7 +10,8 @@ RUN apk add bash supervisor openssl-dev $PHPIZE_DEPS autoconf g++ make && \
     docker-php-ext-install bcmath pcntl ctype fileinfo json tokenizer && \
     wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
     tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
-    rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+    rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
+    docker-php-ext-install pdo pdo_mysql
 
 COPY supervisord.conf /etc/supervisord.conf
 COPY supervisord /etc/supervisor/conf.d/
