@@ -17,19 +17,21 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS && \
     apk --update --no-cache add autoconf g++ make && \
     pecl install -f xdebug && \
     docker-php-ext-enable xdebug && \
-    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.remote_autostart=on" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.client_host=192.168.1.27" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.client_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.start_with_request=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.discover_client_host=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.idekey=docker" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "error_reporting=E_ALL" >> /usr/local/etc/php/conf.d/config.ini && \
+    echo "display_startup_errors=On" >> /usr/local/etc/php/conf.d/config.ini && \
+    echo "display_errors=On" >> /usr/local/etc/php/conf.d/config.ini && \
     docker-php-ext-install bcmath pcntl ctype fileinfo json tokenizer && \
     wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
     tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
     rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
     docker-php-ext-install pdo pdo_mysql
     
-
 COPY nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /var/www/html
