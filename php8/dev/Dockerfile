@@ -18,7 +18,7 @@ RUN apk add bash shadow git nginx -u $PHPIZE_DEPS && \
     pecl install -f xdebug && \
     docker-php-ext-enable xdebug && \
     echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.client_host=192.168.1.27" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    #echo "xdebug.client_host=192.168.1.27" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.client_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.start_with_request=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.discover_client_host=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
